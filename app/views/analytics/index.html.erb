@@ -1,0 +1,47 @@
+<div class="max-w-4xl mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">Search Analytics</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+    <div class="bg-white p-4 shadow rounded">
+      <p class="text-gray-500 text-sm">Total Searches</p>
+      <p class="text-2xl font-semibold"><%= @total_searches %></p>
+    </div>
+    <div class="bg-white p-4 shadow rounded">
+      <p class="text-gray-500 text-sm">Unique Queries</p>
+      <p class="text-2xl font-semibold"><%= @total_unique_queries %></p>
+    </div>
+  </div>
+
+  <h2 class="text-xl font-bold mt-6 mb-2">Trending Queries</h2>
+  <div class="bg-white p-4 shadow rounded">
+    <table class="min-w-full text-sm text-left text-gray-700 border">
+        <thead class="bg-gray-100 text-xs uppercase font-semibold text-gray-600 border-b">
+        <tr>
+            <th scope="col" class="px-4 py-2">Query</th>
+            <th scope="col" class="px-4 py-2 text-right">Total Searches</th>
+            <th scope="col" class="px-4 py-2 text-right">Unique Users</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @top_queries.each do |query_info| %>
+            <tr class="border-b hover:bg-gray-50">
+            <td class="px-4 py-2"><%= query_info[:query] %></td>
+            <td class="px-4 py-2 text-right"><%= query_info[:total_count] %></td>
+            <td class="px-4 py-2 text-right"><%= query_info[:unique_users] %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+  </div>
+
+
+  <h2 class="text-xl font-bold mt-6 mb-2">Recent Searches</h2>
+  <ul class="bg-white shadow rounded p-4">
+    <% @recent_searches.each do |q| %>
+      <li class="py-1 border-b flex justify-between text-sm">
+        <span><%= q.query %></span>
+        <span class="text-gray-500"><%= q.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>

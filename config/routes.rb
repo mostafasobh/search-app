@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get "/guide", to: "guide#show", as: :guide
+
+  root "search#index"
+  post "/search", to: "search#create"
+  
+  get  'search_queries/suggestions', to: 'search#suggestions'
+  post 'search_queries/log',         to: 'search#log_query'
+
+  # Analytics
+  get "/analytics", to: "analytics#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
