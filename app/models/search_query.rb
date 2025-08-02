@@ -32,6 +32,6 @@ class SearchQuery < ApplicationRecord
   end
 
   def self.recent_searches(limit = 10)
-    order(created_at: :desc).limit(limit)
+    where("created_at >= ?", 2.days.ago).order(created_at: :desc).limit(limit)
   end
 end
