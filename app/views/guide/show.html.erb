@@ -1,14 +1,68 @@
 <div class="max-w-3xl mx-auto py-12 px-6">
   <h1 class="text-3xl font-bold text-indigo-700 mb-4">What is SearchApp?</h1>
   <p class="text-gray-700 leading-relaxed mb-6">
-    SearchApp is a real-time search tracker that captures what users are typing as they search.
-    The goal isn’t to perform the search itself, but to collect analytics on what users are interested in.
+    <strong>SearchApp</strong> is a real-time search tracker built with Ruby on Rails. Instead of performing the actual search, the app captures what users are typing and logs meaningful search queries. It helps teams gain insights into user interest and trending topics.
   </p>
 
-  <ul class="list-disc list-inside text-gray-700 space-y-2">
-    <li>Tracks meaningful search phrases submitted by users.</li>
-    <li>Displays analytics and trending searches over time.</li>
-    <li>Helps understand what users are searching for the most.</li>
-    <li>All searches are tracked anonymously using the user’s IP address only.</li>
+  <h2 class="text-2xl font-semibold text-indigo-600 mt-8 mb-2">Core Features</h2>
+  <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
+    <li>Logs every search phrase submitted by the user.</li>
+    <li>Provides suggestion endpoints based on user history.</li>
+    <li>Tracks searches anonymously using the user’s IP address.</li>
+    <li>Handles real-time logging of user input events like backspace and tab close.</li>
+    <li>Does not require user accounts or sessions—lightweight and analytics-focused.</li>
   </ul>
+
+  <h2 class="text-2xl font-semibold text-indigo-600 mt-8 mb-2">Running the App Locally</h2>
+  <p class="text-gray-700 leading-relaxed mb-4">
+    To run SearchApp locally, you'll need <strong>Docker</strong> and <strong>Docker Compose</strong> installed. Follow these steps:
+  </p>
+  <ol class="list-decimal list-inside text-gray-700 space-y-2 mb-6">
+    <li>Clone the repository:
+      <pre class="bg-gray-100 p-2 rounded mt-1">git clone https://github.com/mostafasobh/search-app.git</pre>
+    </li>
+    <li>Navigate to the project folder:
+      <pre class="bg-gray-100 p-2 rounded mt-1">cd searchapp</pre>
+    </li>
+    <li>Export the required environment variables in your terminal:
+      <pre class="bg-gray-100 p-2 rounded mt-1">
+export HELPJUICE_DATABASE_PASSWORD=your_db_password
+export RAILS_MASTER_KEY=your_rails_master_key
+      </pre>
+    </li>
+    <li>Build and run the app:
+      <pre class="bg-gray-100 p-2 rounded mt-1">docker-compose up --build</pre>
+    </li>
+    <li>Visit the app at <code>http://localhost:3000</code>.</li>
+  </ol>
+
+  <h2 class="text-2xl font-semibold text-indigo-600 mt-8 mb-2">Running the Test Suite</h2>
+  <p class="text-gray-700 leading-relaxed mb-4">
+    This project includes an RSpec test suite covering the key controller logic and edge cases like invalid inputs and server errors.
+  </p>
+  <ol class="list-decimal list-inside text-gray-700 space-y-2 mb-6">
+    <li>Open a terminal inside the running container:
+      <pre class="bg-gray-100 p-2 rounded mt-1">docker-compose exec app bash</pre>
+    </li>
+    <li>Run the tests:
+      <pre class="bg-gray-100 p-2 rounded mt-1">bundle exec rspec</pre>
+    </li>
+  </ol>
+
+  <p class="text-gray-700 leading-relaxed">
+    All tests should pass if the app is correctly set up. The specs validate that the logging, query tracking, and error handling work as intended.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-indigo-600 mt-8 mb-2">Get in Touch</h2>
+  <p class="text-gray-700 leading-relaxed mb-4">
+    Whether you have questions, suggestions, or just want to share your thoughts on <strong>SearchApp</strong>, I'd love to hear from you.
+    Feel free to reach out through 
+    <a href="https://github.com/mostafasobh/search-app/issues" target="_blank" class="text-indigo-600 hover:underline">GitHub issues</a> 
+    or connect with me on 
+    <a href="https://www.linkedin.com/in/mostafa-sobh-3ba6531b2/" target="_blank" class="text-indigo-600 hover:underline">LinkedIn</a>.
+  </p>
+  <p class="text-gray-700 leading-relaxed">
+    Feedback, feature requests, or even criticism—everything is welcome and helps improve the project. Thanks for checking it out!
+  </p>
+  
 </div>
