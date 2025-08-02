@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: helpjuice_development
+      POSTGRES_USER: helpjuice
+      POSTGRES_PASSWORD: ${HELPJUICE_DATABASE_PASSWORD}
+
+  app:
+    build: .
+    command: ["./bin/rails", "server", "-b", "0.0.0.0"]
+    volumes:
+      - .:/rails
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: postgresql://helpjuice:${HELPJUICE_DATABASE_PASSWORD}@db:5432/helpjuice_development
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+volumes:
+  postgres_data:
