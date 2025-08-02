@@ -5,6 +5,9 @@ class SearchQuery < ApplicationRecord
 
   # Scope for recent queries (e.g. last 24h)
   scope :recent, ->(since = 24.hours.ago) { where("created_at >= ?", since) }
+  scope :total_searches, -> { all }  # just use `.count` when needed
+  scope :total_unique_queries, -> { select(:query).distinct }
+  scope :recent_searches, ->(limit = 10) { where("created_at >= ?", 2.days.ago).order(created_at: :desc).limit(limit) }
 
   def self.trending(limit = 10, since = 24.hours.ago)
     select("query,
@@ -21,17 +24,5 @@ class SearchQuery < ApplicationRecord
         POWER(GREATEST(EXTRACT(EPOCH FROM (NOW() - MAX(created_at)))/3600, 1), 0.8)
       DESC"))
       .limit(limit)
-  end
-
-  def self.total_searches
-    count
-  end
-
-  def self.total_unique_queries
-    distinct.count(:query)
-  end
-
-  def self.recent_searches(limit = 10)
-    order(created_at: :desc).limit(limit)
   end
 end

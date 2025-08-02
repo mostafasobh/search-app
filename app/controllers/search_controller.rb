@@ -20,7 +20,7 @@ class SearchController < ApplicationController
 
     query = @user.search_queries.new(query: query)
     unless query.save
-      return :internal_server_error
+      return head :internal_server_error
     end
 
     head :ok
