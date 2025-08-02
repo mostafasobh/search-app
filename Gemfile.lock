@@ -89,6 +89,8 @@ GEM
     crass (1.0.6)
     date (3.4.1)
     diff-lcs (1.6.2)
+    dockerfile-rails (1.7.10)
+      rails (>= 3.0.0)
     dotenv (3.1.8)
     drb (2.2.3)
     ed25519 (1.4.0)
@@ -377,6 +379,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
+  dockerfile-rails (>= 1.7)
   factory_bot_rails
   faker
   importmap-rails

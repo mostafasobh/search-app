@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root "search#index"
   post "/search", to: "search#create"
-  
+
   get  'search_queries/suggestions', to: 'search#suggestions'
   post 'search_queries/log',         to: 'search#log_query'
 

@@ -50,5 +50,4 @@ RSpec.describe SearchController, type: :controller do
       expect(response).to have_http_status(:internal_server_error)
     end
   end
-
 end

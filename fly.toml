@@ -1,0 +1,58 @@
+# fly.toml app configuration file generated for search-app-rf2rlg-late-silence-1850 on 2025-08-02T06:09:25+03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'search-app-rf2rlg-late-silence-1850'
+primary_region = 'fra'
+console_command = '/rails/bin/rails console'
+
+[build]
+
+[deploy]
+  release_command = './bin/rails db:prepare'
+
+[env]
+  HELPJUICE_DATABASE_PASSWORD = '123456'
+  PORT = '8080'
+  RAILS_MASTER_KEY = '95e523bd4252374f34dedb23c945c78a'
+
+[processes]
+  app = './bin/rails server'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+  [[http_service.checks]]
+    interval = '10s'
+    timeout = '2s'
+    grace_period = '5s'
+    method = 'GET'
+    path = '/up'
+    protocol = 'http'
+    tls_skip_verify = false
+
+    [http_service.checks.headers]
+      X-Forwarded-Proto = 'https'
+
+  [[http_service.checks]]
+    interval = '10s'
+    timeout = '2s'
+    grace_period = '5s'
+    method = 'GET'
+    path = '/up'
+    protocol = 'http'
+    tls_skip_verify = false
+
+    [http_service.checks.headers]
+      X-Forwarded-Proto = 'https'
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
